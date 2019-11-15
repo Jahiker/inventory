@@ -72,7 +72,8 @@
 								}
 							}
 						} else { 
-							$sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE nombre='$row[nombre]' AND almacen='$almacen' GROUP BY nombre";
+							$sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE nombre='$row[nombre]' AND almacen='$almacen'";
+							// $sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE nombre='$row[nombre]' AND almacen='$almacen' GROUP BY nombre";
 							$query1=mysqli_query($link,$sql1)or die(mysqli_error($link)); 
 							while ($row1=mysqli_fetch_array($query1)) { ?>
 							 	<tr>
