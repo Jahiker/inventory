@@ -18,7 +18,7 @@
 				include('bannerF.php');
 			}
 			$almacen=$_GET['pro'];
-			$sql="SELECT * FROM producto WHERE almacen='$almacen'";
+			$sql="SELECT (id_producto,nombre,descripcion,categoria,cantidad,precio,almacen,imagen) FROM producto WHERE almacen='$almacen' GROUP BY nombre";
 			$query=mysqli_query($link,$sql)or die(mysqli_error($link));
 			$resultados=mysqli_num_rows($query);
 		?>
