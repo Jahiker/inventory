@@ -18,7 +18,8 @@
 				include('bannerF.php');
 			}
 			$almacen=$_GET['pro'];
-			$sql="SELECT id_producto,nombre,descripcion,categoria,cantidad,precio,almacen,imagen FROM producto WHERE almacen='$almacen' GROUP BY nombre";
+			$sql="SELECT * FROM producto WHERE almacen='$almacen'";
+			// $sql="SELECT * FROM producto WHERE almacen='$almacen' GROUP BY nombre";
 			$query=mysqli_query($link,$sql)or die(mysqli_error($link));
 			$resultados=mysqli_num_rows($query);
 		?>
@@ -48,7 +49,8 @@
 				} else {
 					while ($row=mysqli_fetch_array($query)) {
 						if (isset($_POST['buscar']) && $_POST['buscar']!='') {
-							$sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE almacen='$almacen' AND nombre LIKE '$_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar]' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '%$_POST[buscar]%' GROUP BY nombre";
+							// $sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE almacen='$almacen' AND nombre LIKE '$_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar]' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '%$_POST[buscar]%' GROUP BY nombre";
+							$sql1="SELECT *, sum(cantidad) as cantidadProductoAlmacen FROM producto WHERE almacen='$almacen' AND nombre LIKE '$_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar]' OR almacen='$almacen' AND nombre LIKE '% $_POST[buscar] %' OR almacen='$almacen' AND nombre LIKE '%$_POST[buscar]%'";
 							$query1=mysqli_query($link,$sql1)or die(mysqli_error($link));
 							$resultados1=mysqli_num_rows($query1);
 							if ($resultados1==0) { ?>
